@@ -68,15 +68,18 @@
         </EntityType>
         <EntityType Name="Bill">
           <Key>
-            <PropertyRef Name="MAHOADON" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="MAHOADON" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="MANV" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="MAKH" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="MAKH" Type="nvarchar" MaxLength="500" />
           <Property Name="MAGIOHANG" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="GIATHANHTOAN" Type="int" Nullable="false" />
           <Property Name="NGAYTHANHTOAN" Type="datetime" Nullable="false" />
-          <Property Name="MAGIAMGIA" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="BillDetails">
           <Key>
@@ -99,13 +102,13 @@
         </EntityType>
         <EntityType Name="CartDetails">
           <Key>
-            <PropertyRef Name="MACTGH" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="MACTGH" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="MAGH" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="MASP" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="GIA" Type="int" />
           <Property Name="SOLUONG" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Coupon">
           <Key>
@@ -138,9 +141,14 @@
           <Property Name="EMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SDT" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CT25Team12.dbo.OrderStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="OrderStatus">
           <Key>
             <PropertyRef Name="MATT" />
+            <PropertyRef Name="MAHD" />
+            <PropertyRef Name="TRANGTHAI" />
+            <PropertyRef Name="MANVTHEODOI" />
           </Key>
           <Property Name="MATT" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="MAHD" Type="varchar" MaxLength="15" Nullable="false" />
@@ -164,6 +172,7 @@
           <Property Name="MAU" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="SOLUONG" Type="int" Nullable="false" />
           <Property Name="MOTA" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TENNV" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -175,30 +184,9 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK__Bill__MAGIAMGIA__22751F6C">
-          <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
-          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coupon">
-              <PropertyRef Name="MAMGGIA" />
-            </Principal>
-            <Dependent Role="Bill">
-              <PropertyRef Name="MAGIAMGIA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BillDetail__MAHD__2645B050">
-          <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
-          <End Role="BillDetails" Type="Self.BillDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bill">
-              <PropertyRef Name="MAHOADON" />
-            </Principal>
-            <Dependent Role="BillDetails">
-              <PropertyRef Name="MAHD" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__BillDetail__MAHD__607251E5' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__BillDetail__MAHD__607251E5" />-->
         <Association Name="FK__BillDetail__MASP__25518C17">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="BillDetails" Type="Self.BillDetails" Multiplicity="*" />
@@ -259,18 +247,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderStatu__MAHD__2CF2ADDF">
-          <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
-          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bill">
-              <PropertyRef Name="MAHOADON" />
-            </Principal>
-            <Dependent Role="OrderStatus">
-              <PropertyRef Name="MAHD" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__OrderStatu__MAHD__6166761E' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__OrderStatu__MAHD__6166761E" />-->
         <Association Name="FK__Products__MALOHA__1AD3FDA4">
           <End Role="LOHANG" Type="Self.LOHANG" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -353,17 +332,16 @@
           <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOHANG" EntityType="Self.LOHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHAPHANKHOI" EntityType="Self.NHAPHANKHOI" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Bill__MAGIAMGIA__22751F6C" Association="Self.FK__Bill__MAGIAMGIA__22751F6C">
-            <End Role="Coupon" EntitySet="Coupon" />
-            <End Role="Bill" EntitySet="Bill" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BillDetail__MAHD__2645B050" Association="Self.FK__BillDetail__MAHD__2645B050">
-            <End Role="Bill" EntitySet="Bill" />
-            <End Role="BillDetails" EntitySet="BillDetails" />
-          </AssociationSet>
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OrderStatus].[MATT] AS [MATT], 
+    [OrderStatus].[MAHD] AS [MAHD], 
+    [OrderStatus].[TRANGTHAI] AS [TRANGTHAI], 
+    [OrderStatus].[MANVTHEODOI] AS [MANVTHEODOI]
+    FROM [dbo].[OrderStatus] AS [OrderStatus]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__BillDetail__MASP__25518C17" Association="Self.FK__BillDetail__MASP__25518C17">
             <End Role="Products" EntitySet="Products" />
             <End Role="BillDetails" EntitySet="BillDetails" />
@@ -383,10 +361,6 @@
           <AssociationSet Name="FK__LOHANG__MANPP__17F790F9" Association="Self.FK__LOHANG__MANPP__17F790F9">
             <End Role="NHAPHANKHOI" EntitySet="NHAPHANKHOI" />
             <End Role="LOHANG" EntitySet="LOHANG" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrderStatu__MAHD__2CF2ADDF" Association="Self.FK__OrderStatu__MAHD__2CF2ADDF">
-            <End Role="Bill" EntitySet="Bill" />
-            <End Role="OrderStatus" EntitySet="OrderStatus" />
           </AssociationSet>
           <AssociationSet Name="FK__Products__MALOHA__1AD3FDA4" Association="Self.FK__Products__MALOHA__1AD3FDA4">
             <End Role="LOHANG" EntitySet="LOHANG" />
@@ -475,18 +449,18 @@
         </EntityType>
         <EntityType Name="Bill">
           <Key>
-            <PropertyRef Name="MAHOADON" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="MAHOADON" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MANV" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MAKH" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MAKH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="MAGIOHANG" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GIATHANHTOAN" Type="Int32" Nullable="false" />
           <Property Name="NGAYTHANHTOAN" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MAGIAMGIA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Coupon" Relationship="Self.FK__Bill__MAGIAMGIA__22751F6C" FromRole="Bill" ToRole="Coupon" />
-          <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetail__MAHD__2645B050" FromRole="Bill" ToRole="BillDetails" />
-          <NavigationProperty Name="OrderStatus" Relationship="Self.FK__OrderStatu__MAHD__2CF2ADDF" FromRole="Bill" ToRole="OrderStatus" />
+          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="BillDetail">
           <Key>
@@ -497,7 +471,6 @@
           <Property Name="MASP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GIA" Type="Int32" />
           <Property Name="SOLUONG" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bill" Relationship="Self.FK__BillDetail__MAHD__2645B050" FromRole="BillDetails" ToRole="Bill" />
           <NavigationProperty Name="Product" Relationship="Self.FK__BillDetail__MASP__25518C17" FromRole="BillDetails" ToRole="Products" />
         </EntityType>
         <EntityType Name="Cart">
@@ -513,13 +486,13 @@
         </EntityType>
         <EntityType Name="CartDetail">
           <Key>
-            <PropertyRef Name="MACTGH" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="MACTGH" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MAGH" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MASP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GIA" Type="Int32" />
           <Property Name="SOLUONG" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Cart" Relationship="Self.FK__CartDetail__MAGH__2A164134" FromRole="CartDetails" ToRole="Cart" />
           <NavigationProperty Name="Product" Relationship="Self.FK__CartDetail__MASP__29221CFB" FromRole="CartDetails" ToRole="Products" />
         </EntityType>
@@ -533,7 +506,6 @@
           <Property Name="THOIHAN" Type="Int32" />
           <Property Name="THONGTINGIAMGIA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GIATRIGIAMGIATOIDA" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bills" Relationship="Self.FK__Bill__MAGIAMGIA__22751F6C" FromRole="Coupon" ToRole="Bill" />
           <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__MAGIAMGIA__1F98B2C1" FromRole="Coupon" ToRole="Cart" />
         </EntityType>
         <EntityType Name="LOHANG">
@@ -559,16 +531,6 @@
           <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="LOHANGs" Relationship="Self.FK__LOHANG__MANPP__17F790F9" FromRole="NHAPHANKHOI" ToRole="LOHANG" />
         </EntityType>
-        <EntityType Name="OrderStatu">
-          <Key>
-            <PropertyRef Name="MATT" />
-          </Key>
-          <Property Name="MATT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MAHD" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TRANGTHAI" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MANVTHEODOI" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Bill" Relationship="Self.FK__OrderStatu__MAHD__2CF2ADDF" FromRole="OrderStatus" ToRole="Bill" />
-        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="MASP" />
@@ -586,6 +548,7 @@
           <Property Name="MAU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SOLUONG" Type="Int32" Nullable="false" />
           <Property Name="MOTA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TENNV" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BillDetails" Relationship="Self.FK__BillDetail__MASP__25518C17" FromRole="Products" ToRole="BillDetails" />
           <NavigationProperty Name="CartDetails" Relationship="Self.FK__CartDetail__MASP__29221CFB" FromRole="Products" ToRole="CartDetails" />
           <NavigationProperty Name="LOHANG" Relationship="Self.FK__Products__MALOHA__1AD3FDA4" FromRole="Products" ToRole="LOHANG" />
@@ -599,6 +562,18 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="OrderStatu">
+          <Key>
+            <PropertyRef Name="MATT" />
+            <PropertyRef Name="MAHD" />
+            <PropertyRef Name="TRANGTHAI" />
+            <PropertyRef Name="MANVTHEODOI" />
+          </Key>
+          <Property Name="MATT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MAHD" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TRANGTHAI" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MANVTHEODOI" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -625,42 +600,6 @@
             </Principal>
             <Dependent Role="AspNetUserLogins">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Bill__MAGIAMGIA__22751F6C">
-          <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
-          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coupon">
-              <PropertyRef Name="MAMGGIA" />
-            </Principal>
-            <Dependent Role="Bill">
-              <PropertyRef Name="MAGIAMGIA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__BillDetail__MAHD__2645B050">
-          <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
-          <End Role="BillDetails" Type="Self.BillDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bill">
-              <PropertyRef Name="MAHOADON" />
-            </Principal>
-            <Dependent Role="BillDetails">
-              <PropertyRef Name="MAHD" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrderStatu__MAHD__2CF2ADDF">
-          <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
-          <End Role="OrderStatus" Type="Self.OrderStatu" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bill">
-              <PropertyRef Name="MAHOADON" />
-            </Principal>
-            <Dependent Role="OrderStatus">
-              <PropertyRef Name="MAHD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -753,9 +692,9 @@
           <EntitySet Name="Coupons" EntityType="Self.Coupon" />
           <EntitySet Name="LOHANGs" EntityType="Self.LOHANG" />
           <EntitySet Name="NHAPHANKHOIs" EntityType="Self.NHAPHANKHOI" />
-          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatu" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatu" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -763,18 +702,6 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Bill__MAGIAMGIA__22751F6C" Association="Self.FK__Bill__MAGIAMGIA__22751F6C">
-            <End Role="Coupon" EntitySet="Coupons" />
-            <End Role="Bill" EntitySet="Bills" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BillDetail__MAHD__2645B050" Association="Self.FK__BillDetail__MAHD__2645B050">
-            <End Role="Bill" EntitySet="Bills" />
-            <End Role="BillDetails" EntitySet="BillDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrderStatu__MAHD__2CF2ADDF" Association="Self.FK__OrderStatu__MAHD__2CF2ADDF">
-            <End Role="Bill" EntitySet="Bills" />
-            <End Role="OrderStatus" EntitySet="OrderStatus" />
           </AssociationSet>
           <AssociationSet Name="FK__BillDetail__MASP__25518C17" Association="Self.FK__BillDetail__MASP__25518C17">
             <End Role="Products" EntitySet="Products" />
@@ -870,12 +797,15 @@
             <EntityTypeMapping TypeName="CT25Team12Model.Bill">
               <MappingFragment StoreEntitySet="Bill">
                 <ScalarProperty Name="MAHOADON" ColumnName="MAHOADON" />
-                <ScalarProperty Name="MANV" ColumnName="MANV" />
                 <ScalarProperty Name="MAKH" ColumnName="MAKH" />
                 <ScalarProperty Name="MAGIOHANG" ColumnName="MAGIOHANG" />
                 <ScalarProperty Name="GIATHANHTOAN" ColumnName="GIATHANHTOAN" />
                 <ScalarProperty Name="NGAYTHANHTOAN" ColumnName="NGAYTHANHTOAN" />
-                <ScalarProperty Name="MAGIAMGIA" ColumnName="MAGIAMGIA" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -903,11 +833,11 @@
           <EntitySetMapping Name="CartDetails">
             <EntityTypeMapping TypeName="CT25Team12Model.CartDetail">
               <MappingFragment StoreEntitySet="CartDetails">
-                <ScalarProperty Name="MACTGH" ColumnName="MACTGH" />
                 <ScalarProperty Name="MAGH" ColumnName="MAGH" />
                 <ScalarProperty Name="MASP" ColumnName="MASP" />
                 <ScalarProperty Name="GIA" ColumnName="GIA" />
                 <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -945,16 +875,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderStatus">
-            <EntityTypeMapping TypeName="CT25Team12Model.OrderStatu">
-              <MappingFragment StoreEntitySet="OrderStatus">
-                <ScalarProperty Name="MATT" ColumnName="MATT" />
-                <ScalarProperty Name="MAHD" ColumnName="MAHD" />
-                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-                <ScalarProperty Name="MANVTHEODOI" ColumnName="MANVTHEODOI" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="CT25Team12Model.Product">
               <MappingFragment StoreEntitySet="Products">
@@ -971,6 +891,7 @@
                 <ScalarProperty Name="MAU" ColumnName="MAU" />
                 <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
                 <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+                <ScalarProperty Name="TENNV" ColumnName="TENNV" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -982,6 +903,16 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="CT25Team12Model.OrderStatu">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="MATT" ColumnName="MATT" />
+                <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+                <ScalarProperty Name="MANVTHEODOI" ColumnName="MANVTHEODOI" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

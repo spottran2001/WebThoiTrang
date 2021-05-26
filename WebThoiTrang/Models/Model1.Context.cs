@@ -37,8 +37,8 @@ namespace WebThoiTrang.Models
         public virtual DbSet<Coupon> Coupons { get; set; }
         public virtual DbSet<LOHANG> LOHANGs { get; set; }
         public virtual DbSet<NHAPHANKHOI> NHAPHANKHOIs { get; set; }
-        public virtual DbSet<OrderStatu> OrderStatus { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<OrderStatu> OrderStatus { get; set; }
     }
 }

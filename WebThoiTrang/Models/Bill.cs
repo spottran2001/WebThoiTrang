@@ -14,25 +14,15 @@ namespace WebThoiTrang.Models
     
     public partial class Bill
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Bill()
-        {
-            this.BillDetails = new HashSet<BillDetail>();
-            this.OrderStatus = new HashSet<OrderStatu>();
-        }
-    
         public string MAHOADON { get; set; }
-        public string MANV { get; set; }
         public string MAKH { get; set; }
         public string MAGIOHANG { get; set; }
         public int GIATHANHTOAN { get; set; }
         public System.DateTime NGAYTHANHTOAN { get; set; }
-        public string MAGIAMGIA { get; set; }
-    
-        public virtual Coupon Coupon { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BillDetail> BillDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderStatu> OrderStatus { get; set; }
+        public int Phone { get; set; }
+        public string Address { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Id { get; set; }
     }
 }

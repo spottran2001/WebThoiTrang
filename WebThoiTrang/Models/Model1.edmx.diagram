@@ -4,27 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5399481f4931484b8dc5276adf866e1b" Name="Diagram1" ZoomLevel="47">
-        <EntityTypeShape EntityType="CT25Team12Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.AspNetRole" Width="1.5" PointX="10.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.AspNetUserClaim" Width="1.5" PointX="15.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.AspNetUserLogin" Width="1.5" PointX="15.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.AspNetUser" Width="1.5" PointX="13" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.Bill" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.BillDetail" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.Cart" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.CartDetail" Width="1.5" PointX="10.5" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.Coupon" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.LOHANG" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.NHAPHANKHOI" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.OrderStatu" Width="1.5" PointX="7.5" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.Product" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team12Model.sysdiagram" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+      <Diagram DiagramId="c2d05d674f454f2c8b4f8391b03765e6" Name="Diagram1">
+        <EntityTypeShape EntityType="CT25Team12Model.C__MigrationHistory" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.AspNetRole" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.AspNetUserClaim" Width="1.5" PointX="12.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.AspNetUser" Width="1.5" PointX="10" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.Bill" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.BillDetail" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.Cart" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.CartDetail" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.Coupon" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.LOHANG" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.NHAPHANKHOI" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.Product" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.sysdiagram" Width="1.5" PointX="2.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team12Model.OrderStatu" Width="1.5" PointX="4.75" PointY="12" IsExpanded="true" />
         <AssociationConnector Association="CT25Team12Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team12Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team12Model.FK__Bill__MAGIAMGIA__22751F6C" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team12Model.FK__BillDetail__MAHD__2645B050" ManuallyRouted="false" />
-        <AssociationConnector Association="CT25Team12Model.FK__OrderStatu__MAHD__2CF2ADDF" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team12Model.FK__BillDetail__MASP__25518C17" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team12Model.FK__Cart__MAGIAMGIA__1F98B2C1" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team12Model.FK__CartDetail__MAGH__2A164134" ManuallyRouted="false" />
