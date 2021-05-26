@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebThoiTrang.Models;
 
-namespace WebThoiTrang.Controllers
+namespace WebThoiTrang.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
 
