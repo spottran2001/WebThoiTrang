@@ -3,35 +3,56 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+    <div class="mainCont">
+        <div class="linkTree">
+            <a href="./index.html">Home</a> /
+            <a href="./signUp.html"> Sign Up</a>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        <div class="quote">
+            <p>
+                The Best Place To Find Your <br />
+                <h1>A E S T H E T I C</h1>
+            </p>
+            <h3>Sign Up</h3>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+        <div class="box-container">
+            <form class="signUpfrm">
+
+                <div class="input" style="margin-top: 15%;">
+                    <b>Email<span>*</span></b><br />
+                    @Html.TextBoxFor(m => m.Email, new { @class = "inputField", @placeholder = "Your Email", @type = "Email" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+
+                </div>
+                <div class="input">
+                    <b>Password<span>*</span></b><br />
+                    @Html.PasswordFor(m => m.Password, new { @class = "inputField", @placeholder = "Your Password" })
+                    <br />
+
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="input">
+                    <b>Confirm Password<span>*</span></b><br />
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "inputField", @placeholder = "Retype Your Password" })
+                    <br />
+
+                </div>
+
+                <p class="requirement" style="color: red;">*Required field</p>
+                <input type="submit" value="Sign Up" class=" btn-lg Btn signIn rounded-pill" />
+                <br />
+                <a class=" already" href="../../Account/Login">Already Has An Account?</a>
+                <br />
+
+            </form>
         </div>
     </div>
 }
