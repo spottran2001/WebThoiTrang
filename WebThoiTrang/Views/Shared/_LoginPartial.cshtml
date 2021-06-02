@@ -1,22 +1,49 @@
 ﻿@using Microsoft.AspNet.Identity
+<!-- Custom fonts for this template-->
+<!-- Custom styles for this template-->
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
+        <a class="nav-link dropdown-toggle"
+           href="#"
+           id="userDropdown"
+           role="button"
+           data-toggle="dropdown"
+           aria-haspopup="true"
+           aria-expanded="false">
+            <img class="img-profile rounded-circle" style="width: 30px;"
+                 src="https://images.vexels.com/media/users/3/147102/isolated/preview/082213cb0f9eabb7e6715f59ef7d322a-instagram-profile-icon-by-vexels.png" />
+        </a>
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <div style="width: 200px;" class="
+                    dropdown-menu dropdown-menu-right
+                    shadow
+                    animated--grow-in
+                    "
+             aria-labelledby="userDropdown" >
+
+            <a class="dropdown-item" href="@Url.Action( "Index", "Manage")">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                Profile
+            </a>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item"  href="javascript:document.getElementById('logoutForm').submit()">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Log off
+            </a>
+        </div>
+
+
+
+
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    <button class="btn btn-outline-light regisBtn" style="margin-left: 1%; margin-right: 10px;">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @style = "color: white;  text-decoration: none;" })</button>
+
+    <button class="btn btn-outline-light logBtn">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @style ="color: white; text-decoration: none;" })</button>
 }
