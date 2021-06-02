@@ -14,11 +14,11 @@ namespace WebThoiTrang.Models
     
     public partial class CartDetail
     {
-        public string MACTGH { get; set; }
         public string MAGH { get; set; }
         public string MASP { get; set; }
         public Nullable<int> GIA { get; set; }
         public int SOLUONG { get; set; }
+        public int Id { get; set; }
     
         public virtual Cart Cart { get; set; }
         public virtual Product Product { get; set; }

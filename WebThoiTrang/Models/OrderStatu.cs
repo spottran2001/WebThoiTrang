@@ -18,7 +18,5 @@ namespace WebThoiTrang.Models
         public string MAHD { get; set; }
         public string TRANGTHAI { get; set; }
         public string MANVTHEODOI { get; set; }
-    
-        public virtual Bill Bill { get; set; }
     }
 }

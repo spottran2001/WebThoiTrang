@@ -17,7 +17,6 @@ namespace WebThoiTrang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Coupon()
         {
-            this.Bills = new HashSet<Bill>();
             this.Carts = new HashSet<Cart>();
         }
     
@@ -28,8 +27,6 @@ namespace WebThoiTrang.Models
         public string THONGTINGIAMGIA { get; set; }
         public int GIATRIGIAMGIATOIDA { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bill> Bills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
     }

@@ -34,6 +34,7 @@ namespace WebThoiTrang.Models
         public string MAU { get; set; }
         public int SOLUONG { get; set; }
         public string MOTA { get; set; }
+        public string TENNV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillDetail> BillDetails { get; set; }
