@@ -176,8 +176,12 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRolesController..cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRoleUserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BillsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CouponsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2603,6 +2607,21 @@
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\WebThoiTrang.dll.config" />
+    <Content Include="Areas\Admin\Views\Coupons\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Coupons\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Coupons\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Coupons\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Coupons\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\Bills\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Bills\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Bills\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Bills\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2648,6 +2667,17 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Bills\Create.cshtml" />
+    <Content Include="Views\Cart\Create.cshtml" />
+    <Content Include="Views\Cart\Delete.cshtml" />
+    <Content Include="Views\Cart\Details.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
