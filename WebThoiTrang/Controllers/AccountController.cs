@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -17,7 +18,6 @@ namespace WebThoiTrang.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
         public AccountController()
         {
         }
@@ -58,6 +58,7 @@ namespace WebThoiTrang.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+
             return View();
         }
 
@@ -155,6 +156,9 @@ namespace WebThoiTrang.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, "Khách Hàng");
+
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -327,7 +331,7 @@ namespace WebThoiTrang.Controllers
             {
                 return RedirectToAction("Login");
             }
-
+            
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
@@ -391,7 +395,10 @@ namespace WebThoiTrang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Session["cart"] = null;
+
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -445,6 +452,16 @@ namespace WebThoiTrang.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
+            //ApplicationUserManager userManager = UserManager;
+            //string userId = User.Identity.GetUserId();
+            //List<string> roles = userManager.GetRoles(userId).ToList();
+            //foreach (var role in roles)
+            //{
+            //    if (role == "Admin" || role == "Nhân Viên")
+            //    {
+            //        returnUrl = "../../Admin";
+            //    }
+            //}
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);

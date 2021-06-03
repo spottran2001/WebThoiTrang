@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebThoiTrang.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebThoiTrang.Controllers
 {
@@ -13,26 +14,42 @@ namespace WebThoiTrang.Controllers
     public class HomeController : Controller
     {
         private CT25Team12Entities db = new CT25Team12Entities();
+        private List<CartDetail> cart = null;
 
+        private void GetCart()
+        {
+            if (Session["cart"] != null)
+                cart = Session["cart"] as List<CartDetail>;
+            else
+            {
+                cart = new List<CartDetail>();
+                Session["cart"] = cart;
+            }
+        }
         public ActionResult Index()
         {
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                GetCart();
+                if (ModelState.IsValid)
+                {
+                    string cartCode = "cart" + userId.Substring(0, 8);
+
+                    var userCart = db.Carts.Find(cartCode);
+
+                    cart = userCart.CartDetails.ToList();
+                    Session["cart"] = cart;
+                }
+            }catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
             var products = db.Products;
             return View(products.ToList());
         }
-        [Authorize]
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
-        [Authorize(Roles = "Admin")]
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
         
     }
 }
