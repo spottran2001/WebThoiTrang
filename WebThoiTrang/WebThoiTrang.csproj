@@ -177,7 +177,6 @@
     <Compile Include="Areas\Admin\Controllers\BillsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CouponsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2546,12 +2545,6 @@
     <Content Include="Areas\Admin\Views\Coupons\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Coupons\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Coupons\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\Search.cshtml" />
     <Content Include="Areas\Admin\Views\Bills\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Bills\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Bills\Edit.cshtml" />
