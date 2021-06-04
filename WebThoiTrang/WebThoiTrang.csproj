@@ -177,6 +177,7 @@
     <Compile Include="Areas\Admin\Controllers\BillsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CouponsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NHAPHANKHOIsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2559,6 +2560,11 @@
     <Content Include="bin\roslyn\vbc.exe.config" />
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="Areas\Admin\Views\NHAPHANKHOIs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NHAPHANKHOIs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NHAPHANKHOIs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\NHAPHANKHOIs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NHAPHANKHOIs\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
